@@ -19,14 +19,14 @@ const rename = require('gulp-rename')
 const clean = require('gulp-clean')
 
 // 目标文件夹地址
-const targetPath = '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro'
+const targetPath = '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro'
 // dist文件夹地址
 const distPath = './dist'
 // 忽略隐藏文件
 const isIgnoreHiddenFiles = true
 // 忽略文件夹或文件，不要进行处理，直接拷贝过去
 const ignorePaths = [
-  '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro/lib',
+  '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro/lib',
   // '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro/js/index.js'
 ]
 // 任务列表
