@@ -26,8 +26,14 @@ const distPath = './dist'
 const isIgnoreHiddenFiles = true
 // 忽略文件夹或文件，不要进行处理，直接拷贝过去
 const ignorePaths = [
-  '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro/lib',
-  // '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro/js/index.js'
+  // 需要忽略的文件夹
+  // '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro/lib',
+  // 需要忽略的文件
+  // '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro/js/index.js',
+
+  // 压缩报错解决：下面这个文件在压缩时报错，遇到这种报错的且没有更好的解决方案，可以直接忽略拷贝过去使用，不要进行压缩就好了，或者修复掉代码内部导致报错的问题，再次发起压缩
+  // Error: GulpUglifyError: unable to minify JavaScript Caused by: SyntaxError: 'return' outside of function
+  // '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro/lib/ant-design-vue/scripts/prettier.js'
 ]
 // 任务列表
 const tasks = []
