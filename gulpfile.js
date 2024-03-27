@@ -102,10 +102,8 @@ function addTasks(filePath) {
     const files = getDirectoryFiles(filePath)
     // 便利所有文件
     files.forEach((file) => {
-      // 是否为隐藏文件
-      if (isIgnoreHiddenFiles && file.startsWith('.')) {
-        return
-      }
+      // 隐藏文件直接放弃
+      if (isIgnoreHiddenFiles && file.startsWith('.')) { return }
       // 递归获取
       addTasks(path.join(filePath, file))
     })
