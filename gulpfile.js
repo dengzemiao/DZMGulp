@@ -19,21 +19,33 @@ const rename = require('gulp-rename')
 const clean = require('gulp-clean')
 
 // 目标文件夹地址
-const targetPath = '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro'
+const targetPath = '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro'
 // dist文件夹地址
 const distPath = './dist'
 // 忽略隐藏文件
 const isIgnoreHiddenFiles = true
-// 忽略文件夹或文件，不要进行处理，直接拷贝过去
-const ignorePaths = [
-  // 需要忽略的文件夹
-  // '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro/lib',
-  // 需要忽略的文件
-  // '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro/js/index.js',
+// 白名单文件夹或文件，不要进行处理，直接拷贝过去
+const whitePaths = [
+  // 不需要处理的文件夹
+  // 也可以写成这样：'/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro/lib'
+  `${targetPath}/lib`,
+  // 不需要处理的文件
+  // `${targetPath}/js/index.js`,
 
-  // 压缩报错解决：下面这个文件在压缩时报错，遇到这种报错的且没有更好的解决方案，可以直接忽略拷贝过去使用，不要进行压缩就好了，或者修复掉代码内部导致报错的问题，再次发起压缩
+  // 压缩报错解决：下面这个文件在压缩时报错，遇到这种报错的且没有更好的解决方案，可以不进行压缩处理，直接拷贝过去使用，或者修复掉代码内部导致报错的问题，再次进行压缩
   // Error: GulpUglifyError: unable to minify JavaScript; Caused by: SyntaxError: 'return' outside of function; Line: 52; Col: 2;
-  // '/Users/dengzemiao/Desktop/Project/script/vue_script/demo/luckydrawpro/lib/ant-design-vue/scripts/prettier.js'
+  // '/Users/dengzemiao/Desktop/GitHub/DZMLuckyDrawPro/lib/ant-design-vue/scripts/prettier.js'
+]
+// 忽略文件夹或文件，不会进行处理或拷贝，在 distPath 目录中不会存在
+const ignorePaths = [
+  // 需要忽略的文件
+  `${targetPath}/demo.gif`,
+  `${targetPath}/nginx.conf`,
+  `${targetPath}/test.json`,
+  `${targetPath}/test_num.xlsx`,
+  `${targetPath}/test.xlsx`,
+  `${targetPath}/README.md`,
+  `${targetPath}/我期待的不是雪.mp3`
 ]
 // 任务列表
 const tasks = []
@@ -54,12 +66,14 @@ addTasks(targetPath)
 
 // 获取任务列表
 function addTasks(filePath) {
+  // 忽略文件夹或文件，直接放弃
+  if (ignorePaths.includes(filePath)) { return }
   // 输出路径
   const outputPath = distPath + filePath.replace(targetPath, '')
   // 任务名称
   const taskName = `task${tasks.length}`
-  // 忽略的文件夹或文件，直接移植过去
-  if (ignorePaths.includes(filePath)) {
+  // 白名单文件夹或文件，直接移植过去
+  if (whitePaths.includes(filePath)) {
     // 是文件夹还是文件
     if (isDirectory(filePath)) {
       // 文件夹
